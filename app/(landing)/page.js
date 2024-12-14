@@ -1,15 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { LoginButton } from "../_components/auth/login-button";
+import { LoginButton } from "../_components/common/auth/login-button";
+import Link from "next/link";
+import { RegisterButton } from "../_components/common/auth/register-button";
+import LandingHeader from "../_components/layout/landing-header";
 
 const page = async () => {
   return (
-    <div>
-      <h1>Title</h1>
-      {/* <LoginButton mode="modal" asChild> */}
-      <LoginButton asChild>
-        <Button>شروع</Button>
-      </LoginButton>
-    </div>
+    <main className="">
+      <LandingHeader />
+      <section></section>
+    </main>
   );
 };
 

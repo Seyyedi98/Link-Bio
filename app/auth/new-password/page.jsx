@@ -1,4 +1,4 @@
-import { CredentialsNewPasswordForm } from "@/app/_components/auth/credentials-new-password-form";
+import { CredentialsNewPasswordForm } from "@/app/_components/common/auth/credentials-new-password-form";
 import React from "react";
 
 const NewPasswordPage = () => {

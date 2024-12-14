@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import UserButton from "../auth/user-button";
+import UserButton from "../common/auth/user-button";
 
 const Navbar = () => {
   const pathname = usePathname();

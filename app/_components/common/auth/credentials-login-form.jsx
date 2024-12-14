@@ -17,9 +17,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { CardWrapper } from "../ui/card-wrapper";
-import { FormError } from "../ui/form/form-error";
-import { FormSuccess } from "../ui/form/form-success";
+import { CardWrapper } from "../cards/card-wrapper";
+import { FormError } from "../../ui/alerts/form-error";
+import { FormSuccess } from "../../ui/alerts/form-success";
 import {
   InputOTP,
   InputOTPGroup,

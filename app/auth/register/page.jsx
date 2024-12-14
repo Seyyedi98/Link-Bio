@@ -1,5 +1,5 @@
-import { CredentialsRegisterForm } from "@/app/_components/auth/credentials-register-form";
-import { MobileLoginForm } from "@/app/_components/auth/mobile-login-form";
+import { CredentialsRegisterForm } from "@/app/_components/common/auth/credentials-register-form";
+import { MobileLoginForm } from "@/app/_components/common/auth/mobile-login-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const page = () => {

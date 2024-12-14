@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../_components/navbar/Navbar";
+import Navbar from "../_components/nav/Navbar";
 
 const ProtectedLayout = ({ children }) => {
   return (

@@ -1,4 +1,4 @@
-import { CredentialsResetForm } from "@/app/_components/auth/credentials-reset-form";
+import { CredentialsResetForm } from "@/app/_components/common/auth/credentials-reset-form";
 import React from "react";
 
 const ResetPage = () => {

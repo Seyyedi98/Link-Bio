@@ -1,6 +1,6 @@
 "use client";
 
-import { newPassword } from "@/actions/auth/new-password";
+import { reset } from "@/actions/auth/reset";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,27 +11,23 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { NewPasswordSchema } from "@/schemas";
+import { ResetSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { CardWrapper } from "../ui/card-wrapper";
-import { FormError } from "../ui/form/form-error";
-import { FormSuccess } from "../ui/form/form-success";
+import { CardWrapper } from "../cards/card-wrapper";
+import { FormError } from "../../ui/alerts/form-error";
+import { FormSuccess } from "../../ui/alerts/form-success";
 
-export const CredentialsNewPasswordForm = () => {
+export const CredentialsResetForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPanding, startTransition] = useTransition();
-  const searchParams = useSearchParams();
-
-  const token = searchParams.get("token");
 
   const form = useForm({
-    resolver: zodResolver(NewPasswordSchema),
+    resolver: zodResolver(ResetSchema),
     defaultValues: {
-      password: "",
+      email: "",
     },
   });
 
@@ -39,7 +35,7 @@ export const CredentialsNewPasswordForm = () => {
     setError("");
     setSuccess("");
     startTransition(async () => {
-      newPassword(values, token).then((data) => {
+      reset(values).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
       });
@@ -48,7 +44,7 @@ export const CredentialsNewPasswordForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="رمز عبور خود را وارد کنید"
+      headerLabel="رمز عبور خود را فراموش کرده اید؟"
       backButtonLabel="بازگشت به صفحه ی ورود"
       backButtonHref="/auth/login"
     >
@@ -58,16 +54,16 @@ export const CredentialsNewPasswordForm = () => {
             {/* Email field */}
             <FormField
               control={form.control}
-              name="password"
+              name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>رمز عبور</FormLabel>
+                  <FormLabel>ایمیل</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
                       disabled={isPanding}
-                      placeholder="رمز عبور"
-                      type="password"
+                      placeholder="email@mail.com"
+                      type="email"
                     />
                   </FormControl>
                   <FormMessage />
@@ -78,7 +74,7 @@ export const CredentialsNewPasswordForm = () => {
           <FormError message={error} />
           <FormSuccess message={success} />
           <Button disabled={isPanding} type="submit" className="w-full">
-            تغییر رمز عبور
+            بازنشانی رمز عبور
           </Button>
         </form>
       </Form>

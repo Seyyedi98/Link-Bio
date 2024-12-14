@@ -1,7 +1,7 @@
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import React from "react";
-import BackButton from "../../auth/back-button";
-import { CardWrapper } from "../card-wrapper";
+import BackButton from "../../common/auth/back-button";
+import { CardWrapper } from "./card-wrapper";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 
 const ErrorCard = () => {

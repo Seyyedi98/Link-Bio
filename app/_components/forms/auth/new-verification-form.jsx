@@ -1,12 +1,12 @@
 "use client";
 
 import { BeatLoader } from "react-spinners";
-import { CardWrapper } from "../ui/card-wrapper";
+import { CardWrapper } from "../../common/cards/card-wrapper";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { newVerification } from "@/actions/auth/new-verification";
-import { FormError } from "../ui/form/form-error";
-import { FormSuccess } from "../ui/form/form-success";
+import { FormError } from "../../ui/alerts/form-error";
+import { FormSuccess } from "../../ui/alerts/form-success";
 
 export const NewVerificationForm = () => {
   const [error, setError] = useState();
