@@ -2,6 +2,7 @@
 
 import { UserInfo } from "@/app/_components/common/profile/user-info";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import { redirect } from "next/navigation";
 
 const ClientPage = () => {
   const user = useCurrentUser();

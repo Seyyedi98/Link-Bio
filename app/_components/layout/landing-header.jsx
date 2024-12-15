@@ -3,36 +3,65 @@ import React from "react";
 import { LoginButton } from "../common/auth/login-button";
 import { RegisterButton } from "../common/auth/register-button";
 import { Button } from "@/components/ui/button";
+import { currentUser } from "@/lib/get-user";
+import UserButton from "../common/auth/user-button";
+import ThemeSwitcher from "../common/button/ThemeSwitcher";
 
-const LandingHeader = () => {
+const HeroForm = async () => {
+  const user = await currentUser();
+
   return (
-    <header className="bg-white border-b flex justify-between items-center p-4">
-      <div className="group flex gap-4 items-center">
-        <Link href="/" className="text-lg font-bold">
-          لینک بیو
-        </Link>
-        <nav className="flex gap-4  text-slate-500 group-hover:text-slate-400 duration-150 text-sm">
-          <Link href="/" className="hover:text-slate-700 duration-150">
-            درباره ما
-          </Link>
-          <Link href="/" className="hover:text-slate-700 duration-150">
-            تعرفه ها
-          </Link>
-          <Link href="/" className="hover:text-slate-700 duration-150">
-            ارتباط با ما
-          </Link>
-        </nav>
-      </div>
-      <div className="flex gap-2 text-slate-500">
-        <LoginButton asChild>
-          <Button variant="outline">ورود</Button>
-        </LoginButton>
-        <RegisterButton>
-          <Button>عضویت</Button>
-        </RegisterButton>
-      </div>
+    <header className="absolute w-full">
+      <header className="bg-ba border-b p-4">
+        <div className="items-between mx-auto flex w-full max-w-6xl justify-between px-4">
+          <div className="group flex items-center gap-8">
+            <Link href="/" className="text-lg font-bold">
+              لینک بیو
+            </Link>
+            <nav className="text- text- flex gap-4 duration-150 group-hover:text-zinc-500">
+              <Link
+                href="/"
+                className="duration-150 hover:text-zinc-900 dark:hover:text-zinc-50"
+              >
+                درباره ما
+              </Link>
+              <Link
+                href="/"
+                className="duration-150 hover:text-zinc-900 dark:hover:text-zinc-50"
+              >
+                تعرفه ها
+              </Link>
+              <Link
+                href="/"
+                className="duration-150 hover:text-zinc-900 dark:hover:text-zinc-50"
+              >
+                ارتباط با ما
+              </Link>
+            </nav>
+          </div>
+          <div className="flex gap-4 text-slate-500">
+            {user ? (
+              <>
+                <Button asChild>
+                  <Link href="/dashboard">پنل کاربری</Link>
+                </Button>
+                <UserButton />
+              </>
+            ) : (
+              <>
+                <LoginButton asChild>
+                  <Button variant="outline">ورود</Button>
+                </LoginButton>
+                <RegisterButton>
+                  <Button>عضویت</Button>
+                </RegisterButton>
+              </>
+            )}
+          </div>
+        </div>
+      </header>
     </header>
   );
 };
 
-export default LandingHeader;
+export default HeroForm;

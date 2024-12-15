@@ -20,7 +20,7 @@ const UserButton = () => {
       <DropdownMenuTrigger>
         <Avatar>
           <AvatarImage src={user?.image || undefined} />
-          <AvatarFallback className="bg-red-500">
+          <AvatarFallback className="bg-primary">
             <User className="text-white" />
           </AvatarFallback>
         </Avatar>
@@ -30,7 +30,7 @@ const UserButton = () => {
           <DropdownMenuItem>
             <LogoutButton>
               <div className="flex items-center">
-                <ExitIcon className="h-4 w-4 mr-2" /> خروج
+                <ExitIcon className="mr-2 h-4 w-4" /> خروج
               </div>
             </LogoutButton>
           </DropdownMenuItem>

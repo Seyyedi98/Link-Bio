@@ -3,9 +3,9 @@ import Navbar from "../_components/nav/Navbar";
 
 const ProtectedLayout = ({ children }) => {
   return (
-    <div className="h-dvh w-full flex flex-col gap-y-10 items-center justify-center ">
+    <div className="flex h-dvh w-full flex-col gap-y-10">
       <Navbar />
-      {children}
+      <div className="px-4">{children}</div>
     </div>
   );
 };
