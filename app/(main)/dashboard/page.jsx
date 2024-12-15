@@ -1,7 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import NewUsernameForm from "@/app/_components/form/new-username-form";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Dashboard = () => {
@@ -12,24 +11,7 @@ const Dashboard = () => {
     setDesiredName(localStorage.getItem("checkusername"));
   }, [desiredName]);
 
-  return (
-    <div>
-      <form>
-        <h1 className="mb-10 text-center text-4xl font-bold">
-          همین حالا صفحه خودتو بساز
-        </h1>
-        <p className="mb-6 text-center text-gray-500">اسم پیجت رو انتخاب کن</p>
-        <input
-          type="text"
-          placeholder="username"
-          className="mx-auto block border p-2"
-        />
-        <Button type="submit" className="bg-primary text-primary-foreground">
-          clain username
-        </Button>
-      </form>
-    </div>
-  );
+  return <NewUsernameForm defaultValue={desiredName} />;
 };
 
 export default Dashboard;

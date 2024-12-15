@@ -44,7 +44,7 @@ const Navbar = () => {
         </Button>
       </div>
       <div className="flex items-center justify-center gap-2">
-        <ThemeSwitcher />
+        <ThemeSwitcher variant="rounded" />
         <UserButton />
       </div>
     </nav>

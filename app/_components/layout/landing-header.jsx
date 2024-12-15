@@ -1,11 +1,9 @@
-import Link from "next/link";
-import React from "react";
-import { LoginButton } from "../common/auth/login-button";
-import { RegisterButton } from "../common/auth/register-button";
 import { Button } from "@/components/ui/button";
 import { currentUser } from "@/lib/get-user";
+import Link from "next/link";
+import { LoginButton } from "../common/auth/login-button";
+import { RegisterButton } from "../common/auth/register-button";
 import UserButton from "../common/auth/user-button";
-import ThemeSwitcher from "../common/button/ThemeSwitcher";
 
 const HeroForm = async () => {
   const user = await currentUser();
@@ -16,7 +14,7 @@ const HeroForm = async () => {
         <div className="items-between mx-auto flex w-full max-w-6xl justify-between px-4">
           <div className="group flex items-center gap-8">
             <Link href="/" className="text-lg font-bold">
-              لینک بیو
+              لینک
             </Link>
             <nav className="text- text- flex gap-4 duration-150 group-hover:text-zinc-500">
               <Link

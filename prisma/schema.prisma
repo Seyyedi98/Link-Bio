@@ -100,3 +100,7 @@ model OtpToken {
 
   @@unique([phoneNumber, token])
 }
+
+model Page {
+  uri String @unique
+}

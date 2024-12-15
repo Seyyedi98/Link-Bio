@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import HeroForm from "../_components/layout/landing-header";
 import EnterLinkForm from "../_components/form/hero-form";
+import prisma from "@/lib/client";
 
 const page = async () => {
   return (
