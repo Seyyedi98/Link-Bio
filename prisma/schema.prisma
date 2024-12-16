@@ -31,6 +31,7 @@ model User {
   isTwoFactorEnabled      Boolean                @default(false)
   twoFactorConfirmation   twoFactorConfirmation?
   role                    UserRole               @default(USER)
+  page                    Page[]
   accounts                Account[]
   twofactorConfiramtionId String?
 
@@ -102,5 +103,9 @@ model OtpToken {
 }
 
 model Page {
-  uri String @unique
+  uri       String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  owner     String?
+  User      User?    @relation(fields: [owner], references: [id])
 }

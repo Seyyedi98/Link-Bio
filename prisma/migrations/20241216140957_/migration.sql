@@ -1,0 +1,2 @@
+-- AddForeignKey
+ALTER TABLE `Page` ADD CONSTRAINT `Page_owner_fkey` FOREIGN KEY (`owner`) REFERENCES `accounts`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

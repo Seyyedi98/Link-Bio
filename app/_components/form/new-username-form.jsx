@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { AlertTriangle, ArrowLeft } from "lucide-react";
-import React, { startTransition, useState, useTransition } from "react";
-import { useFormState } from "react-dom";
+import { AlertTriangle, ArrowLeft, Loader2Icon } from "lucide-react";
+import { redirect } from "next/navigation";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 const NewUsernameForm = ({ defaultValue }) => {
@@ -26,6 +26,7 @@ const NewUsernameForm = ({ defaultValue }) => {
         setError("");
         createNewPage(values.username).then((data) => {
           setError(data.error);
+          redirect(`/dashboard/${values.username}`);
         });
         localStorage.removeItem("checkusername");
       } catch (error) {}
@@ -65,13 +66,17 @@ const NewUsernameForm = ({ defaultValue }) => {
 
           <Button
             type="submit"
-            className="group mx-auto block w-full bg-primary text-zinc-50"
+            className="group flex w-full items-center justify-center bg-primary text-zinc-50"
             disabled={isPending}
           >
-            <span className="flex items-center justify-center gap-2">
-              شروع
-              <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
-            </span>
+            {isPending ? (
+              <Loader2Icon className="animate-spin" />
+            ) : (
+              <span className="flex items-center justify-center gap-2">
+                شروع
+                <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
+              </span>
+            )}
           </Button>
 
           {error ? (
