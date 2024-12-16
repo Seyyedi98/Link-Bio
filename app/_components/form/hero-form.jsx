@@ -6,23 +6,24 @@ import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FormSuccess } from "../ui/alerts/form-success";
 import { FormError } from "../ui/alerts/form-error";
+import { checkUsernameIsAvailable } from "@/actions/page/page";
 
 const EnterLinkForm = () => {
   const [userName, setUserName] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const user = useCurrentUser();
 
-  const isUserNameAvailable = true;
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const isUserNameAvailable = await checkUsernameIsAvailable(userName);
 
-  function handleSubmit(event) {
     setSuccess("");
     setError("");
     event.preventDefault();
     if (!userName) return;
 
-    if (isUserNameAvailable) {
-      setSuccess("همین حالا شروع کن!");
+    if (isUserNameAvailable.success) {
+      setSuccess(isUserNameAvailable.success);
       window.localStorage.setItem("checkusername", userName);
       setTimeout(() => redirect("/auth/register"), 1000);
     } else {
