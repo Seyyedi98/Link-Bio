@@ -72,3 +72,19 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.radio-togglers {
+  @apply inline-flex bg-gray-200 p-1;
+}
+
+.radio-togglers span {
+  @apply flex items-center justify-center p-2 px-4 text-gray-500;
+}
+
+.radio-togglers input[type="radio"] {
+  @apply hidden;
+}
+
+.radio-togglers input[type="radio"]:checked + span {
+  @apply bg-white text-blue-400;
+}

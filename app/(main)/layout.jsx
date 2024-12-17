@@ -7,7 +7,7 @@ const ProtectedLayout = ({ children }) => {
     <main className="flex min-h-dvh">
       {/* <DashboardNavbar /> */}
       <DashboardSidebar />
-      <div className="mx-auto w-full bg-background p-6">{children}</div>
+      <div className="mx-auto w-full bg-background">{children}</div>
     </main>
   );
 };
