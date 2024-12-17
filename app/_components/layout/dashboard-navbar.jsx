@@ -7,7 +7,7 @@ import React from "react";
 import UserButton from "../common/auth/user-button";
 import ThemeSwitcher from "../common/button/ThemeSwitcher";
 
-const Navbar = () => {
+const DashboardNavbar = () => {
   const pathname = usePathname();
   return (
     <nav className="flex w-full items-center justify-between bg-secondary p-4 shadow-sm">
@@ -51,4 +51,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default DashboardNavbar;

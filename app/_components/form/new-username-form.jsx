@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-const NewUsernameForm = ({ defaultValue }) => {
+const NewUsernameForm = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
 

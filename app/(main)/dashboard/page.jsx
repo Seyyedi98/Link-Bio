@@ -1,19 +1,11 @@
-"use client";
 import { isUserAlreadyHasPage } from "@/actions/page/page";
 import NewUsernameForm from "@/app/_components/form/new-username-form";
-import { useCurrentUser } from "@/hooks/use-current-user";
-import { useEffect, useState } from "react";
+import PagesList from "@/app/_components/section/pages-list";
 
-const Dashboard = () => {
-  const [desiredName, setDesiredName] = useState("");
+const Dashboard = async () => {
+  const userAlreadyHasPage = await isUserAlreadyHasPage();
 
-  const session = useCurrentUser();
-
-  useEffect(() => {
-    setDesiredName(localStorage.getItem("checkusername"));
-  }, [desiredName]);
-
-  return <NewUsernameForm defaultValue={desiredName} />;
+  return <>{userAlreadyHasPage ? <PagesList /> : <NewUsernameForm />}</>;
 };
 
 export default Dashboard;

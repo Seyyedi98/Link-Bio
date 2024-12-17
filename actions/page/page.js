@@ -36,5 +36,12 @@ export async function checkUsernameIsAvailable(username) {
 
 export async function isUserAlreadyHasPage() {
   const user = await currentUser();
-  console.log();
+
+  const userPage = await prisma.page.findFirst({
+    where: {
+      owner: user.id,
+    },
+  });
+  if (userPage) return true;
+  return false;
 }

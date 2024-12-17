@@ -1,12 +1,14 @@
 import React from "react";
-import Navbar from "../_components/nav/Navbar";
+import DashboardNavbar from "../_components/layout/dashboard-navbar";
+import DashboardSidebar from "../_components/layout/dashboard-sidebar";
 
 const ProtectedLayout = ({ children }) => {
   return (
-    <div className="flex h-dvh w-full flex-col gap-y-10">
-      <Navbar />
-      <div className="px-4">{children}</div>
-    </div>
+    <main className="flex min-h-dvh">
+      {/* <DashboardNavbar /> */}
+      <DashboardSidebar />
+      <div className="mx-auto w-full bg-background p-6">{children}</div>
+    </main>
   );
 };
 
