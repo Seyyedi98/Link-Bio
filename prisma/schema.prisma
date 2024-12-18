@@ -103,9 +103,12 @@ model OtpToken {
 }
 
 model Page {
-  uri       String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  owner     String?
-  User      User?    @relation(fields: [owner], references: [id])
+  uri         String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  owner       String?
+  User        User?    @relation(fields: [owner], references: [id])
+  displayName String?
+  location    String?
+  bio         String?  @db.LongText()
 }

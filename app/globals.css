@@ -73,6 +73,15 @@ body {
   }
 }
 
+input[type="text"],
+textarea {
+  @apply mb-6 block w-full bg-primary-foreground p-2;
+}
+
+label[for] {
+  @apply mb-2 block text-sm text-foreground;
+}
+
 .radio-togglers {
   @apply inline-flex bg-gray-200 p-1;
 }
