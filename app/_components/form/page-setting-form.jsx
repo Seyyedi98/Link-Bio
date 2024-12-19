@@ -1,18 +1,46 @@
 "use client";
 
+import { savePageSettings } from "@/actions/page/page-data";
 import { ImageIcon, Palette, SaveIcon, UserCircle2Icon } from "lucide-react";
 import RadioButtonTogglers from "../common/button/radio-btn-togglers";
 import SubmitButton from "../common/button/submit-button";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const PageSettingsForm = ({ page }) => {
-  const saveSettings = async (formData) => {
-    console.log(formData.get("displayName"));
+  const { toast } = useToast();
+  const [displayName, setDisplayName] = useState(page.displayName);
+  const [location, setLocation] = useState(page.location);
+  const [bio, setBio] = useState(page.bio);
+  const [background, setBackground] = useState("color");
+
+  const saveSettings = async () => {
+    const formValues = {
+      displayName: displayName,
+      location: location,
+      bio: bio,
+    };
+    await savePageSettings(page.uri, formValues).then((data) => {
+      if (data.success) {
+        toast({
+          description: data.success,
+        });
+      }
+      if (data.error) {
+        toast({
+          description: data.error,
+        });
+      }
+    });
   };
+
   return (
     <div>
       <form action={saveSettings}>
         <div className="flex items-center justify-center bg-gray-200 py-16">
           <RadioButtonTogglers
+            background={background}
+            setBackground={setBackground}
             options={[
               { value: "color", icon: Palette, label: "رنگ" },
               { value: "image", icon: ImageIcon, label: "تصویر" },
@@ -29,22 +57,25 @@ const PageSettingsForm = ({ page }) => {
             id="nameIn"
             type="text"
             name="displayName"
-            defaultValue={page.displayName}
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
             placeholder="اسم شما..."
           />
           <label htmlFor="locationIn">مکان</label>
           <input
             id="locationIn"
             type="text"
-            name="lpcation"
-            defaultValue={page.location}
+            name="location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
             placeholder="اهل کجایی؟"
           />
           <label htmlFor="bioIn">بیو</label>
           <textarea
             id="bioIn"
             name="bio"
-            defaultValue={page.bio}
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
             placeholder="یکم از خودت بگو..."
           />
 
