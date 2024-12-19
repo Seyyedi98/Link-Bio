@@ -112,4 +112,5 @@ model Page {
   location    String?
   bio         String?  @db.LongText()
   background  String   @default("color")
+  bgColor     String   @default("#a4a4a4")
 }

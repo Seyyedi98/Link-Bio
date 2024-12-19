@@ -6,6 +6,7 @@ import RadioButtonTogglers from "../common/button/radio-btn-togglers";
 import SubmitButton from "../common/button/submit-button";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 
 const PageSettingsForm = ({ page }) => {
   const { toast } = useToast();
@@ -13,6 +14,7 @@ const PageSettingsForm = ({ page }) => {
   const [location, setLocation] = useState(page.location);
   const [bio, setBio] = useState(page.bio);
   const [background, setBackground] = useState(page.background);
+  const [bgColor, setBgColor] = useState(page.bgColor);
 
   const saveSettings = async () => {
     const formValues = {
@@ -20,6 +22,7 @@ const PageSettingsForm = ({ page }) => {
       location: location,
       bio: bio,
       background: background,
+      bgColor: bgColor,
     };
     await savePageSettings(page.uri, formValues).then((data) => {
       if (data.success) {
@@ -38,7 +41,10 @@ const PageSettingsForm = ({ page }) => {
   return (
     <div>
       <form action={saveSettings}>
-        <div className="flex items-center justify-center bg-gray-200 py-16">
+        <div
+          className="flex items-center justify-center py-16"
+          style={{ backgroundColor: page.bgColor }}
+        >
           <div>
             <RadioButtonTogglers
               background={background}
@@ -47,8 +53,23 @@ const PageSettingsForm = ({ page }) => {
                 { value: "color", icon: Palette, label: "رنگ" },
                 { value: "image", icon: ImageIcon, label: "تصویر" },
               ]}
-              onChange={() => {}}
+              onChange={(value) => {
+                setBackground(value);
+              }}
             />
+            <div className="shadw-md mt-2 bg-gray-200 text-foreground">
+              {background === "color" && (
+                <div className="flex justify-center gap-2">
+                  <span>رنگ پس زمینه</span>
+                  <input
+                    value={bgColor}
+                    onChange={(e) => setBgColor(e.target.value)}
+                    type="color"
+                    name="bgColor"
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className="flex justify-center">
