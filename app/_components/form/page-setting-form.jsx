@@ -12,13 +12,14 @@ const PageSettingsForm = ({ page }) => {
   const [displayName, setDisplayName] = useState(page.displayName);
   const [location, setLocation] = useState(page.location);
   const [bio, setBio] = useState(page.bio);
-  const [background, setBackground] = useState("color");
+  const [background, setBackground] = useState(page.background);
 
   const saveSettings = async () => {
     const formValues = {
       displayName: displayName,
       location: location,
       bio: bio,
+      background: background,
     };
     await savePageSettings(page.uri, formValues).then((data) => {
       if (data.success) {
@@ -38,15 +39,17 @@ const PageSettingsForm = ({ page }) => {
     <div>
       <form action={saveSettings}>
         <div className="flex items-center justify-center bg-gray-200 py-16">
-          <RadioButtonTogglers
-            background={background}
-            setBackground={setBackground}
-            options={[
-              { value: "color", icon: Palette, label: "رنگ" },
-              { value: "image", icon: ImageIcon, label: "تصویر" },
-            ]}
-            onChange={() => {}}
-          />
+          <div>
+            <RadioButtonTogglers
+              background={background}
+              setBackground={setBackground}
+              options={[
+                { value: "color", icon: Palette, label: "رنگ" },
+                { value: "image", icon: ImageIcon, label: "تصویر" },
+              ]}
+              onChange={() => {}}
+            />
+          </div>
         </div>
         <div className="flex justify-center">
           <UserCircle2Icon className="relative -top-8 h-32 w-32 rounded-full border-4 border-white text-slate-500 shadow-black/50" />

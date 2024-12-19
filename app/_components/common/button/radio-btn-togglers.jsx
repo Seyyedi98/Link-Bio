@@ -8,7 +8,7 @@ const RadioButtonTogglers = ({ options, setBackground, background }) => {
         <label key={index}>
           <input
             checked={option.value === background}
-            onChange={() => setBackground(option.value)}
+            onChange={(e) => setBackground(e.target.value)}
             type="radio"
             name="bgType"
             value={option.value}
