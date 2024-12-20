@@ -1,12 +1,13 @@
 "use client";
 
 import { savePageSettings } from "@/actions/page/page-data";
+import { useToast } from "@/hooks/use-toast";
 import { ImageIcon, Palette, SaveIcon, UserCircle2Icon } from "lucide-react";
+import { useState } from "react";
 import RadioButtonTogglers from "../common/button/radio-btn-togglers";
 import SubmitButton from "../common/button/submit-button";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const PageSettingsForm = ({ page }) => {
   const { toast } = useToast();
@@ -43,9 +44,13 @@ const PageSettingsForm = ({ page }) => {
       <form action={saveSettings}>
         <div
           className="flex items-center justify-center py-16"
-          style={{ backgroundColor: page.bgColor }}
+          style={
+            background === "color"
+              ? { backgroundColor: bgColor }
+              : { backgroundImage: {} }
+          }
         >
-          <div>
+          <div className="text-center">
             <RadioButtonTogglers
               background={background}
               setBackground={setBackground}
@@ -57,8 +62,8 @@ const PageSettingsForm = ({ page }) => {
                 setBackground(value);
               }}
             />
-            <div className="shadw-md mt-2 bg-gray-200 text-foreground">
-              {background === "color" && (
+            {background === "color" && (
+              <div className="shadw-md mt-2 bg-gray-200 text-foreground">
                 <div className="flex justify-center gap-2">
                   <span>رنگ پس زمینه</span>
                   <input
@@ -68,8 +73,16 @@ const PageSettingsForm = ({ page }) => {
                     name="bgColor"
                   />
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+            {background === "image" && (
+              <div className="flex items-center justify-center gap-2">
+                <Button variant="outline" size="lg" className="mt-2">
+                  تغییر عکس
+                </Button>
+                <Input type="file" className="mt-2" />
+              </div>
+            )}
           </div>
         </div>
         <div className="flex justify-center">
