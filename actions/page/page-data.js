@@ -3,6 +3,7 @@
 import prisma from "@/lib/client";
 
 export async function savePageSettings(uri, formValues) {
+  console.log(uri, formValues);
   try {
     await prisma.page.update({
       where: {

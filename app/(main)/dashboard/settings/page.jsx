@@ -87,6 +87,7 @@ const SettingsPage = () => {
                       <FormLabel>نام و نام خانوادگی</FormLabel>
                       <FormControl>
                         <Input
+                          cl
                           {...field}
                           placeholder="اسمت چیه..."
                           disabled={isPending}

@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { FormSuccess } from "../ui/alerts/form-success";
 import { FormError } from "../ui/alerts/form-error";
 import { checkUsernameIsAvailable } from "@/actions/page/page";
+import { Input } from "@/components/ui/input";
 
 const EnterLinkForm = () => {
   const [userName, setUserName] = useState("");
@@ -34,10 +35,10 @@ const EnterLinkForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="inline-flex shadow-lg">
+    <form onSubmit={handleSubmit} className="mb-64 inline-flex h-12 shadow-lg">
       <Button
         type="submit"
-        className="rounded-none bg-primary px-6 py-7 text-white"
+        className="h-full rounded-none bg-primary px-6 py-4 text-white"
       >
         بررسی
       </Button>
@@ -47,9 +48,9 @@ const EnterLinkForm = () => {
         dir="ltr"
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
-        className="focus:shadow-outline border-none bg-primary-foreground text-left focus:outline-none"
+        className="focus:shadow-outline h-full border-none border-transparent bg-primary-foreground text-left focus:border-transparent focus:outline-none focus:ring-0"
       />
-      <span className="self-center bg-primary-foreground py-4 pl-4 pr-1">
+      <span className="self-center bg-primary-foreground py-2 pl-4 pr-1">
         /biol.ink
       </span>
       <FormSuccess message={success} />

@@ -1,21 +1,22 @@
 "use client";
 
 import { savePageSettings } from "@/actions/page/page-data";
-import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/hooks/use-toast";
 import { ImageIcon, Palette, SaveIcon, UserCircle2Icon } from "lucide-react";
 import { useState } from "react";
 import RadioButtonTogglers from "../common/button/radio-btn-togglers";
 import SubmitButton from "../common/button/submit-button";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import UploadCoverImage from "../common/input/upload-cover-image";
 
 const PageSettingsForm = ({ page }) => {
-  const { toast } = useToast();
   const [displayName, setDisplayName] = useState(page.displayName);
   const [location, setLocation] = useState(page.location);
   const [bio, setBio] = useState(page.bio);
   const [background, setBackground] = useState(page.background);
   const [bgColor, setBgColor] = useState(page.bgColor);
+  const [bgImage, setBgImage] = useState(page.bgImage);
 
   const saveSettings = async () => {
     const formValues = {
@@ -43,11 +44,11 @@ const PageSettingsForm = ({ page }) => {
     <div>
       <form action={saveSettings}>
         <div
-          className="flex items-center justify-center py-16"
+          className="flex items-center justify-center bg-cover py-16"
           style={
             background === "color"
               ? { backgroundColor: bgColor }
-              : { backgroundImage: {} }
+              : { backgroundImage: "url(" + bgImage + ")" }
           }
         >
           <div className="text-center">
@@ -76,12 +77,7 @@ const PageSettingsForm = ({ page }) => {
               </div>
             )}
             {background === "image" && (
-              <div className="flex items-center justify-center gap-2">
-                <Button variant="outline" size="lg" className="mt-2">
-                  تغییر عکس
-                </Button>
-                <Input type="file" className="mt-2" />
-              </div>
+              <UploadCoverImage uri={page.uri} setBgImage={setBgImage} />
             )}
           </div>
         </div>
@@ -90,16 +86,17 @@ const PageSettingsForm = ({ page }) => {
         </div>
         <div className="flex flex-col p-4">
           <label htmlFor="nameIn">نام</label>
-          <input
+          <Input
             id="nameIn"
             type="text"
             name="displayName"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
             placeholder="اسم شما..."
+            className="border-transparent focus:border-transparent focus:ring-0"
           />
           <label htmlFor="locationIn">مکان</label>
-          <input
+          <Input
             id="locationIn"
             type="text"
             name="location"
@@ -108,14 +105,13 @@ const PageSettingsForm = ({ page }) => {
             placeholder="اهل کجایی؟"
           />
           <label htmlFor="bioIn">بیو</label>
-          <textarea
+          <Textarea
             id="bioIn"
             name="bio"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             placeholder="یکم از خودت بگو..."
           />
-
           <SubmitButton
             pendingLabel="در حال ذخیره سازی..."
             className=""
