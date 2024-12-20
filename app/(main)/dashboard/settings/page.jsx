@@ -73,7 +73,7 @@ const SettingsPage = () => {
     <div>
       <Card>
         <CardHeader className="">
-          <p className="text-center text-2xl font-semibold">⚙️ Settings</p>
+          <p className="text-center text-2xl font-semibold">تنظیمات ⚙️</p>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -84,11 +84,11 @@ const SettingsPage = () => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>نام و نام خانوادگی</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          placeholder="Name"
+                          placeholder="اسمت چیه..."
                           disabled={isPending}
                         />
                       </FormControl>
@@ -104,11 +104,11 @@ const SettingsPage = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel>ایمیل</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              placeholder="Email"
+                              placeholder="email@mail.com"
                               disabled={isPending}
                             />
                           </FormControl>
@@ -121,7 +121,7 @@ const SettingsPage = () => {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Password</FormLabel>
+                          <FormLabel>رمز عبور</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
@@ -139,7 +139,7 @@ const SettingsPage = () => {
                       name="newPassword"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>New Password</FormLabel>
+                          <FormLabel>رمز عبور جدید</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
@@ -158,9 +158,9 @@ const SettingsPage = () => {
                       render={({ field }) => (
                         <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                           <div className="space-y-0.5">
-                            <FormLabel>Two Factor Authentication</FormLabel>
+                            <FormLabel>ورود دو مرحله ای</FormLabel>
                             <FormDescription>
-                              Enable two factor authentication for your account
+                              فعالسازی ورود دو مرحله ای برای ورود به سایت
                             </FormDescription>
                           </div>
                           <FormControl>
@@ -180,7 +180,7 @@ const SettingsPage = () => {
                   name="role"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Role</FormLabel>
+                      <FormLabel>نقش</FormLabel>
                       <Select
                         disabled={isPending}
                         onValueChange={field.onChange}
@@ -192,8 +192,10 @@ const SettingsPage = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
-                          <SelectItem value={UserRole.USER}>User</SelectItem>
+                          <SelectItem value={UserRole.ADMIN}>ادمین</SelectItem>
+                          <SelectItem value={UserRole.USER}>
+                            کاربر عادی
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </FormItem>
@@ -203,7 +205,7 @@ const SettingsPage = () => {
               <FormError message={error} />
               <FormSuccess message={success} />
               <Button disabled={isPending} type="submit">
-                Save
+                ذخیره
               </Button>
             </form>
           </Form>
