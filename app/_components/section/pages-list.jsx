@@ -11,15 +11,7 @@ const PagesList = async () => {
     },
   });
 
-  return (
-    <PageSettingsForm page={data[0]} />
-    // <div className="flex gap-2">
-    //   <p>آدرس صفحه شما:</p>
-    //   {data.map((page) => (
-    //     <p key={page.id}>{page.uri}</p>
-    //   ))}
-    // </div>
-  );
+  return <PageSettingsForm page={data[0]} />;
 };
 
 export default PagesList;

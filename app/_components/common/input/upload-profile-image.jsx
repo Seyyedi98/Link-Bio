@@ -8,7 +8,7 @@ import { S3 } from "aws-sdk";
 import { Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const UploadCoverImage = ({ uri, setBgImage }) => {
+const UploadProfileImage = ({ uri, setProfileImg }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -60,7 +60,7 @@ const UploadCoverImage = ({ uri, setBgImage }) => {
   const handleUploadButton = async () => {
     setIsUploading(true);
     await uploadFile(file).then(async (res) => {
-      const formValues = { bgImage: res };
+      const formValues = { profileImg: res };
 
       // Add image url to database
       await savePageSettings(uri, formValues).then((data) => {
@@ -68,7 +68,7 @@ const UploadCoverImage = ({ uri, setBgImage }) => {
           toast({
             description: "تصویر با موفقیت اننتخاب شد",
           });
-          setBgImage(formValues.bgImage);
+          setProfileImg(formValues.profileImg);
         }
         if (data.error) {
           toast({
@@ -97,8 +97,8 @@ const UploadCoverImage = ({ uri, setBgImage }) => {
   };
 
   return (
-    <div className="upload-container mt-2 bg-background p-2 shadow">
-      <div className="file-upload flex items-center justify-center gap-2">
+    <span className="upload-container mt-2 bg-background p-2 shadow">
+      <span className="file-upload flex items-center justify-center gap-2">
         <Button
           onClick={handleUploadButton}
           disabled={!file || isUploading}
@@ -122,9 +122,9 @@ const UploadCoverImage = ({ uri, setBgImage }) => {
             className="file-input hidden"
           />
         </label>
-      </div>
-    </div>
+      </span>
+    </span>
   );
 };
 
-export default UploadCoverImage;
+export default UploadProfileImage;

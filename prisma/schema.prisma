@@ -114,4 +114,5 @@ model Page {
   background  String   @default("color")
   bgColor     String   @default("#a4a4a4")
   bgImage     String?  @db.LongText()
+  profileImg  String?  @db.LongText()
 }
