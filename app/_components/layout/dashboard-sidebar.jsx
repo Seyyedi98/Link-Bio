@@ -21,7 +21,7 @@ const DashboardSidebar = () => {
   const session = useCurrentUser();
 
   return (
-    <aside className="flex w-full max-w-xs grow flex-col justify-between border-l-2 bg-primary-foreground p-4 shadow-md">
+    <aside className="fixed flex h-dvh w-full max-w-xs flex-col items-center justify-center p-4">
       <div className="h-1/7"></div>
 
       <div className="flex flex-col items-center">

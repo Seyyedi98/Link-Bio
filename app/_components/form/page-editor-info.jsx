@@ -44,32 +44,30 @@ const PageEditorInfo = ({ page }) => {
   };
 
   return (
-    <div className="bg-primary-foreground shadow-md">
-      <form action={saveSettings}>
-        <EditorHeader
-          background={background}
-          setBackground={setBackground}
-          bgColor={bgColor}
-          setBgColor={setBgColor}
-          bgImage={bgImage}
-          setBgImage={setBgImage}
-          uri={page.uri}
-        />
-        <EditorProfileImg
-          profileImg={profileImg}
-          setProfileImg={setProfileImg}
-          page={page}
-        />
-        <EditorUserInfo
-          displayName={displayName}
-          setDisplayName={setDisplayName}
-          location={location}
-          setLocation={setLocation}
-          bio={bio}
-          setBio={setBio}
-        />
-      </form>
-    </div>
+    <form action={saveSettings}>
+      <EditorHeader
+        background={background}
+        setBackground={setBackground}
+        bgColor={bgColor}
+        setBgColor={setBgColor}
+        bgImage={bgImage}
+        setBgImage={setBgImage}
+        uri={page.uri}
+      />
+      <EditorProfileImg
+        profileImg={profileImg}
+        setProfileImg={setProfileImg}
+        page={page}
+      />
+      <EditorUserInfo
+        displayName={displayName}
+        setDisplayName={setDisplayName}
+        location={location}
+        setLocation={setLocation}
+        bio={bio}
+        setBio={setBio}
+      />
+    </form>
   );
 };
 

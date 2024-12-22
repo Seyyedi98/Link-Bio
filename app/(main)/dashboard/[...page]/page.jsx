@@ -1,4 +1,5 @@
 import PageEditorInfo from "@/app/_components/form/page-editor-info";
+import PageSecctionBox from "@/app/_components/layout/page-section-box";
 import { currentUser } from "@/lib/get-user";
 
 const EditorPage = async () => {
@@ -12,7 +13,12 @@ const EditorPage = async () => {
 
   return (
     <div className="m-2">
-      <PageEditorInfo page={currentPage} />
+      <PageSecctionBox>
+        <PageEditorInfo page={currentPage} />
+      </PageSecctionBox>
+      <PageSecctionBox>
+        <p>Links section</p>
+      </PageSecctionBox>
     </div>
   );
 };
