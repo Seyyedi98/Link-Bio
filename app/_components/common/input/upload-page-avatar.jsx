@@ -1,5 +1,4 @@
 import { savePageSettings } from "@/actions/page/page-data";
-import { updateProfileImage } from "@/actions/user/settings";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
@@ -9,7 +8,7 @@ import { S3 } from "aws-sdk";
 import { Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const UploadProfileImage = ({ uri, setProfileImg }) => {
+const UploadPageAvatar = ({ uri, setProfileImg }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -60,16 +59,16 @@ const UploadProfileImage = ({ uri, setProfileImg }) => {
 
   const handleUploadButton = async () => {
     setIsUploading(true);
-    await uploadFile(file).then(async (imageUrl) => {
-      // const formValues = { profileImg: imageUrl };
+    await uploadFile(file).then(async (res) => {
+      const formValues = { profileImg: res };
 
       // Add image url to database
-      await updateProfileImage(imageUrl).then((data) => {
+      await savePageSettings(uri, formValues).then((data) => {
         if (data.success) {
           toast({
             description: "تصویر با موفقیت اننتخاب شد",
           });
-          setProfileImg(imageUrl);
+          setProfileImg(formValues.profileImg);
         }
         if (data.error) {
           toast({
@@ -79,6 +78,22 @@ const UploadProfileImage = ({ uri, setProfileImg }) => {
       });
       setIsUploading(false);
     });
+  };
+
+  const handleDeleteFile = async (file) => {
+    try {
+      const s3 = new S3({
+        accessKeyId: ACCESSKEY,
+        secretAccessKey: SECRETKEY,
+        endpoint: ENDPOINT,
+      });
+
+      await s3.deleteObject({ Bucket: BUCKET, Key: file.Key }).promise();
+
+      console.log("File deleted successfully");
+    } catch (error) {
+      console.error("Error deleting file: ", error);
+    }
   };
 
   return (
@@ -112,4 +127,4 @@ const UploadProfileImage = ({ uri, setProfileImg }) => {
   );
 };
 
-export default UploadProfileImage;
+export default UploadPageAvatar;

@@ -6,10 +6,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { CameraIcon, UploadCloud, UserCircle2Icon } from "lucide-react";
-import UploadProfileImage from "../common/input/upload-profile-image";
-import { Avatar } from "@/components/ui/avatar";
-import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import Image from "next/image";
+import UploadPageAvatar from "../common/input/upload-page-avatar";
 
 const EditorProfileImg = ({ profileImg, setProfileImg, page }) => {
   return (
@@ -17,9 +15,9 @@ const EditorProfileImg = ({ profileImg, setProfileImg, page }) => {
       {profileImg ? (
         <Image
           src={profileImg}
-          className="relative -top-10 h-32 w-32 rounded-full object-cover"
-          width={100}
-          height={100}
+          className="relative -top-10 h-32 w-32 rounded-full border-4 object-cover"
+          width={128}
+          height={128}
           alt="profile-image"
         />
       ) : (
@@ -33,13 +31,13 @@ const EditorProfileImg = ({ profileImg, setProfileImg, page }) => {
         </DialogTrigger>
         <DialogContent>
           <DialogTitle>تصویر پروفایل</DialogTitle>
-          <DialogDescription className="flex flex-col items-center justify-center gap-4">
+          <DialogDescription className="flex flex-col items-center justify-center gap-4 object-cover">
             {profileImg ? (
               <Image
                 src={profileImg}
-                className="h-24 w-24 rounded-full object-cover"
-                width={100}
-                height={100}
+                className="h-24 w-24 rounded-full"
+                width={128}
+                height={128}
                 alt="profile-image"
               />
             ) : (
@@ -48,7 +46,7 @@ const EditorProfileImg = ({ profileImg, setProfileImg, page }) => {
               </span>
             )}
 
-            <UploadProfileImage setProfileImg={setProfileImg} uri={page.uri} />
+            <UploadPageAvatar setProfileImg={setProfileImg} uri={page.uri} />
           </DialogDescription>
         </DialogContent>
       </Dialog>

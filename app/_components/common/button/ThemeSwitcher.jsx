@@ -51,6 +51,22 @@ const ThemeSwitcher = ({ variant }) => {
       </Button>
     );
   }
+
+  if (variant === "square") {
+    return (
+      <Button
+        className="h-[37px] w-[37px]"
+        variant="outline"
+        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      >
+        {theme === "light" ? (
+          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-90 duration-500 dark:rotate-0" />
+        ) : (
+          <MoonIcon className="h-[1.2rem] w-[1.2rem] rotate-90 transition-all duration-500 dark:rotate-0" />
+        )}
+      </Button>
+    );
+  }
 };
 
 export default ThemeSwitcher;

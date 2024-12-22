@@ -22,7 +22,7 @@ const EditorUserInfo = ({
         value={displayName}
         onChange={(e) => setDisplayName(e.target.value)}
         placeholder="اسم شما..."
-        className="border-transparent focus:border-transparent focus:ring-0"
+        className="shadow"
       />
       <label htmlFor="locationIn">مکان</label>
       <Input
@@ -32,6 +32,7 @@ const EditorUserInfo = ({
         value={location}
         onChange={(e) => setLocation(e.target.value)}
         placeholder="اهل کجایی؟"
+        className="shadow"
       />
       <label htmlFor="bioIn">بیو</label>
       <Textarea
@@ -40,6 +41,7 @@ const EditorUserInfo = ({
         value={bio}
         onChange={(e) => setBio(e.target.value)}
         placeholder="یکم از خودت بگو..."
+        className="shadow"
       />
       <SubmitButton
         pendingLabel="در حال ذخیره سازی..."

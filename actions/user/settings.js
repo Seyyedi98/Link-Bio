@@ -5,6 +5,7 @@ import { currentUser } from "@/lib/get-user";
 import { sendVerificationEmail } from "@/lib/mail";
 import { generateVerificationToken } from "@/lib/tokens";
 import bcrypt from "bcryptjs";
+
 export const settings = async (values) => {
   const user = await currentUser();
 
@@ -40,7 +41,7 @@ export const settings = async (values) => {
   if (values.password && values.newPassword && dbUser.password) {
     const passwrdsMatch = await bcrypt.compare(
       values.password,
-      dbUser.password
+      dbUser.password,
     );
 
     if (!passwrdsMatch) {
@@ -66,4 +67,32 @@ export const settings = async (values) => {
   });
 
   return { success: "Settings Updated!" };
+};
+
+export const updateProfileImage = async (imageUrl) => {
+  const user = await currentUser();
+
+  if (!user) {
+    return { error: "Unauthorized" };
+  }
+
+  const dbUser = await getUserById(user.id);
+  if (!dbUser) {
+    return { error: "Unauthorized" };
+  }
+
+  try {
+    await prisma.user.update({
+      where: {
+        id: dbUser.id,
+      },
+      data: {
+        image: imageUrl,
+      },
+    });
+
+    return { success: "تصویر پروفایل با موفقیت تغییر یافت" };
+  } catch {
+    return { error: "خطایی رخ داد. لطفا مجددا تلاش کنید" };
+  }
 };

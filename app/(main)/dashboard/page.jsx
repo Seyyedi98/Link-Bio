@@ -1,11 +1,13 @@
-import { isUserAlreadyHasPage } from "@/actions/page/page";
+import { getUserPage } from "@/actions/page/page";
 import NewUsernameForm from "@/app/_components/form/new-username-form";
-import PagesList from "@/app/_components/section/pages-list";
+import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
-  const userAlreadyHasPage = await isUserAlreadyHasPage();
-
-  return <>{userAlreadyHasPage ? <PagesList /> : <NewUsernameForm />}</>;
+  const userPage = await getUserPage();
+  if (userPage) redirect(`/dashboard/${userPage.uri}`);
+  {
+  }
+  return <>{userPage ? <p>Loading</p> : <NewUsernameForm />}</>;
 };
 
 export default Dashboard;

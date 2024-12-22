@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE `page` ADD COLUMN `background` VARCHAR(191) NOT NULL DEFAULT 'color',
+    ADD COLUMN `bgColor` VARCHAR(191) NOT NULL DEFAULT '#a4a4a4',
+    ADD COLUMN `bgImage` LONGTEXT NULL,
+    ADD COLUMN `bio` LONGTEXT NULL,
+    ADD COLUMN `displayName` VARCHAR(191) NULL,
+    ADD COLUMN `location` VARCHAR(191) NULL,
+    ADD COLUMN `profileImg` LONGTEXT NULL;

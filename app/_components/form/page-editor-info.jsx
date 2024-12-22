@@ -6,15 +6,18 @@ import { useState } from "react";
 import EditorHeader from "../section/editor-header";
 import EditorProfileImg from "../section/editor-profile-img";
 import EditorUserInfo from "../section/editor-user-info";
+import { notFound } from "next/navigation";
 
-const PageSettingsForm = ({ page }) => {
-  const [displayName, setDisplayName] = useState(page.displayName);
-  const [location, setLocation] = useState(page.location);
-  const [bio, setBio] = useState(page.bio);
-  const [background, setBackground] = useState(page.background);
-  const [bgColor, setBgColor] = useState(page.bgColor);
-  const [bgImage, setBgImage] = useState(page.bgImage);
-  const [profileImg, setProfileImg] = useState(page.profileImg);
+const PageEditorInfo = ({ page }) => {
+  const [displayName, setDisplayName] = useState(page?.displayName || "");
+  const [location, setLocation] = useState(page?.location || "");
+  const [bio, setBio] = useState(page?.bio || "");
+  const [background, setBackground] = useState(page?.background);
+  const [bgColor, setBgColor] = useState(page?.bgColor);
+  const [bgImage, setBgImage] = useState(page?.bgImage || "");
+  const [profileImg, setProfileImg] = useState(page?.profileImg || "");
+
+  if (!page) return notFound();
 
   const saveSettings = async () => {
     const formValues = {
@@ -41,7 +44,7 @@ const PageSettingsForm = ({ page }) => {
   };
 
   return (
-    <div>
+    <div className="bg-primary-foreground shadow-md">
       <form action={saveSettings}>
         <EditorHeader
           background={background}
@@ -70,4 +73,4 @@ const PageSettingsForm = ({ page }) => {
   );
 };
 
-export default PageSettingsForm;
+export default PageEditorInfo;

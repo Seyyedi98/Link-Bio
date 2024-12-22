@@ -43,6 +43,7 @@ const UploadCoverImage = ({ uri, setBgImage }) => {
       const response = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
     } catch (error) {
       console.error("Error fetching files: ", error);
+      // TODO: catch time diffrence error between client and server
     }
   };
 

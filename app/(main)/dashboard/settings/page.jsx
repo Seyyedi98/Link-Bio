@@ -1,6 +1,7 @@
 "use client";
 
 import { settings } from "@/actions/user/settings";
+import UploadProfileImage from "@/app/_components/common/input/upload-profile-image";
 import { FormError } from "@/app/_components/ui/alerts/form-error";
 import { FormSuccess } from "@/app/_components/ui/alerts/form-success";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserRole } from "@prisma/client";
 import { SelectContent } from "@radix-ui/react-select";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
@@ -38,6 +40,7 @@ const SettingsPage = () => {
   const [success, setSuccess] = useState("");
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
+  const [profileImg, setProfileImg] = useState(user.image || "");
 
   const form = useForm({
     resolver: zodResolver(SettingsSchema),
@@ -76,6 +79,18 @@ const SettingsPage = () => {
           <p className="text-center text-2xl font-semibold">تنظیمات ⚙️</p>
         </CardHeader>
         <CardContent>
+          <div className="flex flex-col items-center justify-center gap-4">
+            {profileImg && (
+              <Image
+                src={profileImg}
+                className="h-24 w-24 rounded-full object-cover"
+                width={128}
+                height={128}
+                alt="profile-image"
+              />
+            )}
+            <UploadProfileImage setProfileImg={setProfileImg} />
+          </div>
           <Form {...form}>
             <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
               <div className="space-y-4">
@@ -87,7 +102,6 @@ const SettingsPage = () => {
                       <FormLabel>نام و نام خانوادگی</FormLabel>
                       <FormControl>
                         <Input
-                          cl
                           {...field}
                           placeholder="اسمت چیه..."
                           disabled={isPending}

@@ -34,7 +34,7 @@ export async function checkUsernameIsAvailable(username) {
   return { success: "همین حالا شروع کنید!" };
 }
 
-export async function isUserAlreadyHasPage() {
+export async function getUserPage() {
   const user = await currentUser();
 
   const userPage = await prisma.page.findFirst({
@@ -42,6 +42,6 @@ export async function isUserAlreadyHasPage() {
       owner: user.id,
     },
   });
-  if (userPage) return true;
+  if (userPage) return userPage;
   return false;
 }

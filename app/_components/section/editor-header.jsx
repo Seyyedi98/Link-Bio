@@ -18,7 +18,9 @@ const EditorHeader = ({
       style={
         background === "color"
           ? { backgroundColor: bgColor }
-          : { backgroundImage: "url(" + bgImage + ")" }
+          : bgImage
+            ? { backgroundImage: "url(" + bgImage + ")" }
+            : { backgroundColor: bgColor }
       }
     >
       <div className="text-center">
@@ -34,9 +36,9 @@ const EditorHeader = ({
           }}
         />
         {background === "color" && (
-          <div className="shadw-md mt-2 bg-gray-200 text-foreground">
+          <div className="shadw-md mt-2 bg-background text-foreground">
             <div className="flex justify-center gap-2 py-2">
-              <span>رنگ پس زمینه</span>
+              <span className="">رنگ پس زمینه</span>
               <input
                 value={bgColor}
                 onChange={(e) => setBgColor(e.target.value)}
